@@ -59,8 +59,8 @@ nav li {
   position: absolute;
   top: 20%;
   left: 10%;
-  background: radial-gradient(#33333380);
-  color: white;
+  background: #ffffff80;
+  color: #000547;
   border: 1px solid rgba(0, 0, 0, .75);
   padding: 1.5rem;
   box-shadow: 0 0 3rem #fff;
