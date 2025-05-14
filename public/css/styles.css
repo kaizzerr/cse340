@@ -5,6 +5,30 @@
   box-sizing: border-box;
 }
 
+.top-nav {
+  font-family: 'Roboto', sans-serif;
+}
+
+.siteName, #tools {
+  font-family: 'Oswald', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Oswald', sans-serif;
+}
+
+.herolabel {
+  font-family: 'Roboto', sans-serif;
+}
+
+.herolabel button {
+  font-family: 'Roboto', sans-serif;
+}
+
+.reviews-upgrades {
+  font-family: 'Roboto', sans-serif;
+}
+
 #top-header {
   display: flex;
   justify-content: space-between;
