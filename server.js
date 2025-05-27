@@ -13,7 +13,30 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities/")
+const session = require("express-session")
+const pool = require('./database/')
+const accountRoute = require('./routes/accountRoute')
 
+/* ***********************
+ * Middleware
+ * ************************/
+app.use(session({
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool,
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  name: 'sessionId',
+}))
+
+// Express Messages Middleware
+app.use(require('connect-flash')())
+app.use(function(req, res, next){
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
 
 /* ***********************
  * Routes
@@ -30,8 +53,11 @@ app.use(static)
 // Index Route
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
-// Inventory routes
+// Inventory Route
 app.use("/inv", inventoryRoute)
+
+// Account Route
+app.use('/account', accountRoute)
 
 // Trigger 500 Error Route
 app.get('/error', (req, res, next) => {
@@ -60,7 +86,6 @@ app.use(async (err, req, res, next) => {
     nav
   })
 })
-
 
 /* ***********************
  * Local Server Information
