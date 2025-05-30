@@ -59,7 +59,6 @@ nav ul {
   padding: 1em;
   margin: 0;
   text-decoration: none;
-  color: white;
 }
 
 nav li {
@@ -67,6 +66,16 @@ nav li {
   font-size: 20px;
   font-weight: 500;
 }
+
+nav a {
+  color: #81b1ce;
+}
+
+nav a:hover {
+  color: #aad6ec;
+}
+
+/** Home Page **/
 
 .hero {
   width: 100%;
@@ -231,6 +240,8 @@ nav li {
   text-align: center;
 } 
 
+/** Classification **/
+
 #inv-display {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -276,6 +287,8 @@ nav li {
     justify-content: center;
   }
 }
+
+/** Inventory **/
 
 .vehicle-section {
   display: grid;
@@ -341,4 +354,48 @@ nav li {
   .vehicle-info {
     width: 100%;
   }
+}
+
+.login, .register {
+  height: 100%;
+  width: 100%;
+  padding: 100px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.login label, .register label {
+  display: block;
+  font-weight: bold;
+  color: #333;
+}
+
+.login input, .register input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.login button, .register button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+  background-color: #4681f4;
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.login button:hover, .register button:hover {
+  background-color: #6c9dff;
+}
+
+.login p {
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
