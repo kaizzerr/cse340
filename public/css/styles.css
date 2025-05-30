@@ -399,3 +399,11 @@ nav a:hover {
   font-family: Arial, sans-serif;
   text-align: center;
 }
+
+#showPw {
+  border: 2px solid #000;
+  cursor: pointer;
+  color: blue;
+  padding: 5px;
+  border-radius: 3px;
+}
