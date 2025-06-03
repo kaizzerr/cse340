@@ -1,0 +1,22 @@
+<div class="manageInventory">
+    <h1>Inventory Management</h1>
+
+    <%- messages() %>
+
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+            <% }) %>
+        </ul>
+    <% }%>
+
+    <section class="management-section">
+        <ul>
+            <li><a href="/inv/add-classification">Add New Classification</a></li>
+            <li><a href="/inv/add-inventory">Add New Inventory</a></li>
+        </ul>
+    </section>
+</div>

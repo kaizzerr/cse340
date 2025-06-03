@@ -407,3 +407,61 @@ nav a:hover {
   padding: 5px;
   border-radius: 3px;
 }
+
+.manageInventory h1 {
+  font-family: 'Oswald', sans-serif;
+  padding: 10px;
+}
+
+.manageInventory ul {
+  font-family: Arial, sans-serif;
+}
+
+.addClassification, .addInventory {
+  height: 100%;
+  width: 100%;
+  padding: 100px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.addClassification input, .addInventory input, .addInventory textarea, #classificationList {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.addClassification button, .addInventory button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+  background-color: #1056e2;
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.manageInventory {
+  font-family: Arial, sans-serif;
+}
+
+.manageInventory h1 {
+  font-size: 40px;
+  text-align: center;
+}
+
+.manageInventory ul {
+  list-style-type: none;
+  padding: 10px;
+  text-align: center;
+}
+
+.manageInventory li {
+  font-size: 18px;
+  padding: 10px;
+}
