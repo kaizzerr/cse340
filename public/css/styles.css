@@ -337,7 +337,7 @@ nav a:hover {
 }
 
 .vehicle-info p strong {
-  color: grey;
+  color: black;
 }
 
 @media (max-width: 720px) {
@@ -355,6 +355,8 @@ nav a:hover {
     width: 100%;
   }
 }
+
+/* Login & Register */
 
 .login, .register {
   height: 100%;
@@ -407,6 +409,8 @@ nav a:hover {
   padding: 5px;
   border-radius: 3px;
 }
+
+/* addInventory, addClassification, & manageInventory */
 
 .manageInventory h1 {
   font-family: 'Oswald', sans-serif;
