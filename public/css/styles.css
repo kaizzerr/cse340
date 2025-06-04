@@ -403,11 +403,27 @@ nav a:hover {
 }
 
 #showPw {
-  border: 2px solid #000;
   cursor: pointer;
   color: blue;
   padding: 5px;
-  border-radius: 3px;
+}
+
+.notice {
+  font-family: Arial, sans-serif;
+  list-style-type: none;
+  text-align: center;
+}
+
+.login-message {
+  font-family: Arial, sans-serif;
+  list-style-type: none;
+  text-align: center;
+}
+
+.register-message {
+  font-family: Arial, sans-serif;
+  list-style-type: none;
+  text-align: center;
 }
 
 /* addInventory, addClassification, & manageInventory */
