@@ -44,10 +44,12 @@ invCont.buildDetailView = async function (req, res, next) {
  *  Manage inventory by management view
  * ************************** */
 invCont.buildManagementView = async function (req, res) {
-  const nav = await utilities.getNav()
+  let nav = await utilities.getNav()
+  const classificationSelect = await utilities.buildClassificationList()
   res.render("inventory/management", {
     title: "Inventory Management",
     nav,
+    classificationSelect,
     errors: null,
   })
 }
@@ -56,7 +58,7 @@ invCont.buildManagementView = async function (req, res) {
  *  Build add classification in inventory
  * ************************** */
 invCont.buildAddClassification = async function (req, res) {
-  const nav = await utilities.getNav()
+  let nav = await utilities.getNav()
   res.render("inventory/add-classification", {
     title: "Add New Classification",
     nav,
@@ -98,7 +100,7 @@ invCont.addClassification = async function (req, res) {
  *  Build Add Inventory
  * ************************** */
 invCont.buildAddInventory = async function (req, res) {
-  const nav = await utilities.getNav()
+  let nav = await utilities.getNav()
   const classificationList = await utilities.buildClassificationList()
 
   res.render("inventory/add-inventory", {
@@ -114,7 +116,7 @@ invCont.buildAddInventory = async function (req, res) {
  * ************************** */
 invCont.addInventory = async function (req, res) {
   console.log("Form data:", req.body)
-  const nav = await utilities.getNav()
+  let nav = await utilities.getNav()
   const classificationList = await utilities.buildClassificationList()
   const {
     classification_id,
@@ -165,6 +167,19 @@ invCont.addInventory = async function (req, res) {
       errors: null,
       data: req.body,
     })
+  }
+}
+
+/* ***************************
+ *  Return Inventory by Classification As JSON
+ * ************************** */
+invCont.getInventoryJSON = async (req, res, next) => {
+  const classification_id = parseInt(req.params.classification_id)
+  const invData = await invModel.getInventoryByClassificationId(classification_id)
+  if (invData[0].inv_id) {
+    return res.json(invData)
+  } else {
+    next(new Error("No data returned"))
   }
 }
 

@@ -485,3 +485,19 @@ nav a:hover {
   font-size: 18px;
   padding: 10px;
 }
+
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#inventoryDisplay thead {
+  background-color: #051b47;
+  color: white;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
