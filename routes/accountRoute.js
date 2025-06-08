@@ -27,9 +27,9 @@ router.post(
   utilities.handleErrors(accountController.accountLogin)
 )
 
-// Check Login Success
 router.get(
-  "/",
+  "/", 
+  utilities.checkLogin, 
   utilities.handleErrors(accountController.buildAccountManagement)
 )
 
