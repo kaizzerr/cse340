@@ -437,7 +437,7 @@ nav a:hover {
   font-family: Arial, sans-serif;
 }
 
-.addClassification, .addInventory {
+.addClassification, .addInventory, .edit-inventory-form {
   height: 100%;
   width: 100%;
   padding: 100px;
@@ -445,7 +445,12 @@ nav a:hover {
   box-sizing: border-box;
 }
 
-.addClassification input, .addInventory input, .addInventory textarea, #classificationList {
+.addClassification input, 
+.addInventory input, 
+.addInventory textarea, 
+#classificationList, 
+.edit-inventory-form input, 
+.edit-inventory-form textarea{
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -455,7 +460,7 @@ nav a:hover {
   box-sizing: border-box;
 }
 
-.addClassification button, .addInventory button {
+.addClassification button, .addInventory button, .edit-inventory-form button {
   width: 100%;
   padding: 15px;
   margin-top: 10px;
