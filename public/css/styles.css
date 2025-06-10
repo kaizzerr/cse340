@@ -437,7 +437,7 @@ nav a:hover {
   font-family: Arial, sans-serif;
 }
 
-.addClassification, .addInventory, .edit-inventory-form {
+.addClassification, .addInventory, .update-inventory-form {
   height: 100%;
   width: 100%;
   padding: 100px;
@@ -449,8 +449,8 @@ nav a:hover {
 .addInventory input, 
 .addInventory textarea, 
 #classificationList, 
-.edit-inventory-form input, 
-.edit-inventory-form textarea{
+.update-inventory-form input, 
+.update-inventory-form textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -460,7 +460,7 @@ nav a:hover {
   box-sizing: border-box;
 }
 
-.addClassification button, .addInventory button, .edit-inventory-form button {
+.addClassification button, .addInventory button, .update-inventory-form button {
   width: 100%;
   padding: 15px;
   margin-top: 10px;
@@ -469,6 +469,13 @@ nav a:hover {
   border-radius: 5px;
   font-size: 15px;
   cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ffffff;
+  color: #ffffff;
+  border: none;
+  cursor: default;
 }
 
 .manageInventory {
@@ -487,7 +494,7 @@ nav a:hover {
 }
 
 .manageInventory li {
-  font-size: 18px;
+  font-size: 20px;
   padding: 10px;
 }
 
