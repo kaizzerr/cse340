@@ -356,9 +356,9 @@ nav a:hover {
   }
 }
 
-/* Login & Register */
+/* Login, Register, & Account Management */
 
-.login, .register {
+.login, .register, .update-account, .change-password {
   height: 100%;
   width: 100%;
   padding: 100px;
@@ -366,13 +366,14 @@ nav a:hover {
   box-sizing: border-box;
 }
 
-.login label, .register label {
+.login label, .register label, .update-account label, .change-password label {
   display: block;
+  padding: 10px;
   font-weight: bold;
   color: #333;
 }
 
-.login input, .register input {
+.login input, .register input, .update-account input, .change-password input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -382,7 +383,7 @@ nav a:hover {
   box-sizing: border-box;
 }
 
-.login button, .register button {
+.login button, .register button, .update-account button, .change-password button {
   width: 100%;
   padding: 15px;
   margin-top: 10px;
@@ -393,7 +394,7 @@ nav a:hover {
   cursor: pointer;
 }
 
-.login button:hover, .register button:hover {
+.login button:hover, .register button:hover, .update-account button:hover, .change-password button:hover {
   background-color: #6c9dff;
 }
 
@@ -424,6 +425,36 @@ nav a:hover {
   font-family: Arial, sans-serif;
   list-style-type: none;
   text-align: center;
+}
+
+.acc-manage {
+  margin: 20px auto;
+  padding: 40px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.acc-manage h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.acc-manage h3 {
+  font-size: 30px;
+}
+
+.acc-manage p {
+  font-size: 20px;
+}
+
+.acc-manage a {
+  text-decoration: none;
+  text-align: center;
+}
+
+.acc-manage a:hover {
+  color: #0072b0;
+  text-decoration: underline;
 }
 
 /* addInventory, addClassification, & manageInventory */
@@ -471,7 +502,7 @@ nav a:hover {
   cursor: pointer;
 }
 
-button:disabled {
+.update-inventory-form button:disabled {
   background-color: #ffffff;
   color: #ffffff;
   border: none;

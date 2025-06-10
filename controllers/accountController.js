@@ -113,6 +113,9 @@ async function accountLogin(req, res) {
   }
 }
 
+/* ****************************************
+ *  Build Account Management View
+ * *************************************** */
 async function buildAccountManagement(req, res) {
   let nav = await utilities.getNav()
   res.render("account/account-management", {
@@ -123,4 +126,101 @@ async function buildAccountManagement(req, res) {
   })
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement }
+/* ****************************************
+ *  Verify Account Type
+ * *************************************** */
+async function accTypeAuth(req, res, next) {
+  let nav = await utilities.getNav()
+  const token = req.cookies.jwt
+
+  if (!token) {
+    req.flash("notice", "You must be logged in to access this area.")
+    return res.status(403).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+    })
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+    if (decoded.account_type === "Employee" || decoded.account_type === "Admin") {
+      res.locals.accountData = decoded
+      return next()
+    } else {
+      req.flash("notice", "Access denied. Employees and Admins only.")
+      return res.status(403).render("account/login", {
+        title: "Login",
+        nav,
+        errors: null,
+      })
+    }
+  } catch (error) {
+    req.flash("notice", "Invalid session. Please log in again.")
+    return res.status(403).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+    })
+  }
+}
+
+/* ****************************************
+ *  Build the Update Form view
+ * *************************************** */
+async function buildUpdateView(req, res) {
+  let nav = await utilities.getNav()
+  const account_id = req.params.account_id
+  const accountData = await accountModel.getAccountById(account_id)
+  res.render("account/update", {
+    title: "Update Account",
+    nav,
+    accountData,
+    errors: null,
+  })
+}
+
+/* ****************************************
+ *  Process Account Update Request
+ * *************************************** */
+async function updateAccount(req, res) {
+  let nav = await utilities.getNav()
+  const { account_id, first_name, last_name, email } = req.body
+  const updateResult = await accountModel.updateAccount({ account_id, first_name, last_name, email })
+  if (updateResult) {
+    req.flash("notice", "Account updated successfully.")
+    const updated = await accountModel.getAccountById(account_id)
+    return res.render("account/account-management", { 
+      title: "Account Management",
+      nav,
+      accountData: updated,
+      errors: null 
+    })
+  }
+  req.flash("notice", "Update failed.")
+  return res.redirect(`/account/update/${account_id}`)
+}
+
+/* ****************************************
+ * Process Password Update Request
+ * *************************************** */
+async function changePassword(req, res) {
+  let nav = await utilities.getNav()
+  const { account_id, password } = req.body
+  const hashedPassword = await bcrypt.hash(password, 10)
+  const result = await accountModel.updatePassword(account_id, hashedPassword)
+  if (result) {
+    req.flash("notice", "Password changed successfully.")
+    const accountData = await accountModel.getAccountById(account_id)
+    return res.render("account/account-management", { 
+      title: "Account Management",
+      nav,
+      accountData,
+      errors: null 
+    })
+  }
+  req.flash("notice", "Password update failed.")
+  return res.redirect(`/account/update/${account_id}`)
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, accTypeAuth, buildUpdateView, updateAccount, changePassword }
