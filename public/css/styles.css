@@ -514,6 +514,7 @@ nav a:hover {
 }
 
 .manageInventory h1 {
+  font-family: 'Oswald', sans-serif;
   font-size: 40px;
   text-align: center;
 }
@@ -543,4 +544,50 @@ nav a:hover {
 #inventoryDisplay td {
   border: 1px solid #ddd;
   padding: 10px;
+}
+
+.favorites-list {
+  list-style: none;
+  padding: 0;
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+}
+
+.favorites-list h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 40px;
+  text-align: center;
+}
+
+.favorites-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.favorites-list img {
+  width: auto;
+  height: 240px;
+}
+
+.favorites-list a {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 20px;
+}
+
+.vehicle-info form {
+  font-family: Arial, sans-serif;
+}
+
+.vehicle-info button {
+  padding: 5px;
+  font-size: 18px;
 }

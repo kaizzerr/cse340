@@ -22,6 +22,12 @@ Util.getNav = async function (req, res, next) {
       "</a>"
     list += "</li>"
   })
+
+  if (req && req.session && req.session.account_id) {
+    list +=
+      '<li><a href="/account/favorites" title="Your favorite vehicles">My Favorites</a></li>'
+  }
+
   list += "</ul>"
   return list
 }
@@ -88,6 +94,10 @@ function buildDetailView(vehicle) {
           <p><strong>Price:</strong> ${priceFormatted}</p>
           <p><strong>Mileage:</strong> ${milesFormatted} miles</p>
           <p><strong>Color:</strong> ${vehicle.inv_color}</p>
+          <form action="/account/favorites/add" method="POST">
+            <input type="hidden" name="invId" value="${vehicle.inv_id}">
+            <button type="submit">Add to Favorites</button>
+          </form>
           <p><strong>Description:</strong> ${vehicle.inv_description}</p>
         </div>
       </div>
@@ -132,8 +142,10 @@ Util.checkJWTToken = (req, res, next) => {
         res.clearCookie("jwt")
         return res.redirect("/account/login")
       }
+      req.session.account_id = accountData.account_id
       res.locals.accountData = accountData
       res.locals.loggedin = true
+      req.user = accountData
       next()
       })
     } else {

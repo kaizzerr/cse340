@@ -8,7 +8,7 @@ require("dotenv").config()
 *  Deliver login view
 * *************************************** */
 async function buildLogin(req, res, next) {
-  let nav = await utilities.getNav()
+  let nav = await utilities.getNav(req)
   res.render("account/login", {
     title: "Login",
     nav,
@@ -19,7 +19,7 @@ async function buildLogin(req, res, next) {
 *  Deliver registration view
 * *************************************** */
 async function buildRegister(req, res, next) {
-  let nav = await utilities.getNav()
+  let nav = await utilities.getNav(req)
   res.render("account/register", {
     title: "Register",
     nav,
@@ -31,7 +31,7 @@ async function buildRegister(req, res, next) {
 *  Process Registration
 * *************************************** */
 async function registerAccount(req, res) {
-  let nav = await utilities.getNav()
+  let nav = await utilities.getNav(req)
   const { account_firstname, account_lastname, account_email, account_password } = req.body
 
   let hashedPassword
@@ -75,7 +75,7 @@ async function registerAccount(req, res) {
  *  Process login request
  * ************************************ */
 async function accountLogin(req, res) {
-  let nav = await utilities.getNav()
+  let nav = await utilities.getNav(req)
   const { account_email, account_password } = req.body
   const accountData = await accountModel.getAccountByEmail(account_email)
   if (!accountData) {
@@ -117,7 +117,7 @@ async function accountLogin(req, res) {
  *  Build Account Management View
  * *************************************** */
 async function buildAccountManagement(req, res) {
-  let nav = await utilities.getNav()
+  let nav = await utilities.getNav(req)
   res.render("account/account-management", {
     title: "Account Management",
     nav,
@@ -130,7 +130,7 @@ async function buildAccountManagement(req, res) {
  *  Verify Account Type
  * *************************************** */
 async function accTypeAuth(req, res, next) {
-  let nav = await utilities.getNav()
+  let nav = await utilities.getNav(req)
   const token = req.cookies.jwt
 
   if (!token) {
@@ -169,7 +169,7 @@ async function accTypeAuth(req, res, next) {
  *  Build the Update Form view
  * *************************************** */
 async function buildUpdateView(req, res) {
-  let nav = await utilities.getNav()
+  let nav = await utilities.getNav(req)
   const account_id = req.params.account_id
   const accountData = await accountModel.getAccountById(account_id)
   res.render("account/update", {
@@ -184,7 +184,7 @@ async function buildUpdateView(req, res) {
  *  Process Account Update Request
  * *************************************** */
 async function updateAccount(req, res) {
-  let nav = await utilities.getNav()
+  let nav = await utilities.getNav(req)
   const { account_id, first_name, last_name, email } = req.body
   const updateResult = await accountModel.updateAccount({ account_id, first_name, last_name, email })
   if (updateResult) {
@@ -205,7 +205,7 @@ async function updateAccount(req, res) {
  * Process Password Update Request
  * *************************************** */
 async function changePassword(req, res) {
-  let nav = await utilities.getNav()
+  let nav = await utilities.getNav(req)
   const { account_id, password } = req.body
   const hashedPassword = await bcrypt.hash(password, 10)
   const result = await accountModel.updatePassword(account_id, hashedPassword)

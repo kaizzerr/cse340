@@ -18,6 +18,7 @@ const pool = require('./database/')
 const accountRoute = require('./routes/accountRoute')
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+const favoritesRoute = require('./routes/favoritesRoute')
 
 /* ***********************
  * Middleware
@@ -66,6 +67,9 @@ app.use("/inv", inventoryRoute)
 
 // Account Route
 app.use('/account', accountRoute)
+
+// Favorites Route
+app.use('/account/favorites', favoritesRoute)
 
 // Trigger 500 Error Route
 app.get('/error', (req, res, next) => {
